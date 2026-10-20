@@ -694,6 +694,8 @@ class IPSModule
 
     protected function SetBuffer($Name, $Data)
     {
+        //The kernel accepts scalar values for IPSModule and stores them as string
+        $Data = strval($Data);
         if ($Data === '') {
             unset($this->buffer[$Name]);
             return;
