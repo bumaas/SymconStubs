@@ -1878,6 +1878,9 @@ namespace IPS {
                         {
                             return $a['Value'] <=> $b['Value'];
                         });
+                    } else {
+                        //Keep a list like the kernel, GetValueFormatted accesses the associations by index
+                        self::$profiles[$ProfileName]['Associations'] = array_values(self::$profiles[$ProfileName]['Associations']);
                     }
                 } else {
                     throw new \Exception(sprintf('Cannot find association for deletion with value %s', $AssociationValue));
