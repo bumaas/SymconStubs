@@ -112,7 +112,8 @@ namespace IPS {
             $modules = glob($folder . '/*', GLOB_ONLYDIR);
             $filter = ['libs', 'docs', 'imgs', 'tests', 'actions'];
             foreach ($modules as $module) {
-                if (!in_array(basename($module), $filter)) {
+                //The kernel skips folders without a module.json (e.g. tools or scripts)
+                if (!in_array(basename($module), $filter) && file_exists($module . '/module.json')) {
                     self::loadModule($module, $libraryID);
                 }
             }
